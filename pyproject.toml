@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyuds"
+version = "0.1.0"
+description = "Talk to your ECU in plain English — LLM-powered ISO 14229 UDS assistant"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+keywords = ["automotive", "uds", "iso14229", "diagnostics", "ecu", "can", "llm", "ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Scientific/Engineering",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "anthropic>=0.25.0",
+]
+
+[project.optional-dependencies]
+dev  = ["pytest>=8.0", "pytest-mock", "black", "ruff", "mypy"]
+can  = ["python-can>=4.0"]
+doip = ["doipy>=0.3"]
+
+[project.urls]
+Homepage = "https://github.com/your-org/pyuds"
+Documentation = "https://pyuds.readthedocs.io"
+Issues = "https://github.com/your-org/pyuds/issues"
