@@ -2,7 +2,7 @@ site_name: pyudskit
 site_description: Talk to your ECU in plain English — LLM-powered ISO 14229 UDS assistant
 site_url: https://pyudskit.readthedocs.io
 repo_url: https://github.com/sureshkonar/pyudskit
-repo_name: your-org/pyudskit
+repo_name: sureshkonar/pyudskit
 edit_uri: edit/main/docs/
 
 theme:
@@ -75,6 +75,8 @@ nav:
     - OTA Update Flow: flows/ota-update-flow.md
   - API Reference:
     - UDS Class: api-reference/uds-class.md
+    - AI Client: api-reference/ai-client.md
+    - Services: api-reference/services.md
     - UDSMessage: api-reference/uds-message.md
     - UDSSession: api-reference/uds-session.md
     - Utils: api-reference/utils.md

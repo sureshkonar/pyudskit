@@ -12,6 +12,8 @@ LLM-powered ISO 14229 UDS assistant for automotive diagnostics.
 from pyudskit.client import UDS
 from pyudskit.message import UDSMessage
 from pyudskit.session import UDSSession
+from pyudskit.ai.client import AIClient
+from pyudskit import services
 
 __version__ = "0.1.0"
-__all__ = ["UDS", "UDSMessage", "UDSSession"]
+__all__ = ["UDS", "UDSMessage", "UDSSession", "AIClient", "services"]
