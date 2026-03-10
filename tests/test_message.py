@@ -1,4 +1,4 @@
-from pyuds.message import UDSMessage
+from pyudskit.message import UDSMessage
 
 
 def test_from_hex_strips_spaces():

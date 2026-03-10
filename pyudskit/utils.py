@@ -2,8 +2,8 @@ import json
 import re
 from typing import Any
 
-from pyuds.registry.services import UDS_SERVICES
-from pyuds.registry.dtc_status import DTC_STATUS_BITS
+from pyudskit.registry.services import UDS_SERVICES
+from pyudskit.registry.dtc_status import DTC_STATUS_BITS
 
 
 HEX_RE = re.compile(r"^[0-9A-Fa-f]+$")

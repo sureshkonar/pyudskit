@@ -1,10 +1,10 @@
 import json
 
-from pyuds.registry.services import UDS_SERVICES
-from pyuds.registry.nrc import UDS_NRC
-from pyuds.registry.dtc_status import DTC_STATUS_BITS, DTC_SEVERITY
-from pyuds.registry.dids import COMMON_DIDS
-from pyuds.registry.routines import COMMON_ROUTINES
+from pyudskit.registry.services import UDS_SERVICES
+from pyudskit.registry.nrc import UDS_NRC
+from pyudskit.registry.dtc_status import DTC_STATUS_BITS, DTC_SEVERITY
+from pyudskit.registry.dids import COMMON_DIDS
+from pyudskit.registry.routines import COMMON_ROUTINES
 
 
 def _json(obj: object) -> str:
@@ -13,7 +13,7 @@ def _json(obj: object) -> str:
 
 SYSTEM_PROMPT = (
     "Section 1 — Identity\n"
-    "You are pyuds, an expert ISO 14229 UDS diagnostic assistant.\n\n"
+    "You are pyudskit, an expert ISO 14229 UDS diagnostic assistant.\n\n"
     "Section 2 — Response Format Rules\n"
     "ENCODING: always output JSON {\"uds_bytes\":\"...\",\"service\":\"...\",\"description\":\"...\"}\n"
     "DECODING: always output JSON {\"service\":\"...\",\"type\":\"positive|negative|request\"," \

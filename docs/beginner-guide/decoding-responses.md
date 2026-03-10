@@ -1,9 +1,9 @@
 # Decoding Responses
 
-UDS responses can be cryptic. pyuds decodes them into plain English.
+UDS responses can be cryptic. pyudskit decodes them into plain English.
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.decode("7F 22 31"))

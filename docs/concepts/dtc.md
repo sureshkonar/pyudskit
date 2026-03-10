@@ -49,10 +49,10 @@ WIR    TNCMC  TFSLC  TNCSLC  CDTC  PDTC   TFTMC  TF
 - Snapshot (freeze frame) captures data at the time of failure.
 - Extended data provides additional state and counters.
 
-## pyuds usage
+## pyudskit usage
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.read_dtcs())

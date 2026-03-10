@@ -1,4 +1,4 @@
-from pyuds.client import UDS
+from pyudskit.client import UDS
 
 
 def test_programming_flow_returns_string(mock_llm):

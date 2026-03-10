@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to pyuds are documented here.
+All notable changes to pyudskit are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com)
 Versioning: [Semantic Versioning](https://semver.org)
 
@@ -10,7 +10,7 @@ Versioning: [Semantic Versioning](https://semver.org)
 - DoIP transport layer
 - Local DTC database (offline J2012 lookup)
 - Async client (AsyncUDS)
-- CLI tool: `pyuds encode "Read the VIN"`
+- CLI tool: `pyudskit encode "Read the VIN"`
 
 ## [0.1.0] — 2025-01-01
 ### Added

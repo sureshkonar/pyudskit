@@ -3,7 +3,7 @@
 ## Basic Options
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS(
     api_key="sk-ant-...",
@@ -18,7 +18,7 @@ uds = UDS(
 
 ## Session State
 
-pyuds tracks ECU context automatically:
+pyudskit tracks ECU context automatically:
 
 ```python
 uds.switch_session("extended")

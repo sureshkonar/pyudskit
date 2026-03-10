@@ -38,10 +38,10 @@ Send key:         27 02 5C 0D 3E F6
 ECU response:     67 02               ← access granted
 ```
 
-## pyuds example
+## pyudskit example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.security_access_flow(level=1))

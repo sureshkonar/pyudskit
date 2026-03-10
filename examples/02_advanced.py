@@ -1,4 +1,4 @@
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 

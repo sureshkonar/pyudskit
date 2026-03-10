@@ -12,7 +12,7 @@
 | 7 | 0x80 | warningIndicatorRequested | MIL requested |
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.decode_dtc_status(0x2C))

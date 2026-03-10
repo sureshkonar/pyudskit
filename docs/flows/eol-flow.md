@@ -3,7 +3,7 @@
 End-of-line configuration and variant coding sequence.
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.eol_flow())

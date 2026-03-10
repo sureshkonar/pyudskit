@@ -1,14 +1,14 @@
-# pyuds — Talk to your ECU in plain English
+# pyudskit — Talk to your ECU in plain English
 
 [Get Started](getting-started/installation.md){ .md-button .md-button--primary }
 [API Reference](api-reference/uds-class.md){ .md-button }
-[GitHub](https://github.com/your-org/pyuds){ .md-button }
+[GitHub](https://github.com/sureshkonar/pyudskit){ .md-button }
 
 ---
 
-## What is pyuds?
+## What is pyudskit?
 
-pyuds is a Python library that brings AI to automotive diagnostics. It wraps the full ISO 14229 UDS (Unified Diagnostic Services) standard and lets you interact with ECUs using plain English — powered by Claude LLM.
+pyudskit is a Python library that brings AI to automotive diagnostics. It wraps the full ISO 14229 UDS (Unified Diagnostic Services) standard and lets you interact with ECUs using plain English — powered by Claude LLM.
 
 ## At a Glance
 
@@ -24,13 +24,13 @@ pyuds is a Python library that brings AI to automotive diagnostics. It wraps the
 ## Install
 
 ```python
-pip install pyuds
+pip install pyudskit
 ```
 
 ## 30-Second Demo
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 
@@ -40,7 +40,7 @@ print(uds.explain_dtc("P0301"))
 print(uds.programming_flow())
 ```
 
-## Why pyuds?
+## Why pyudskit?
 
 | Beginner Friendly | Full ISO 14229 | LLM Powered |
 |---|---|---|

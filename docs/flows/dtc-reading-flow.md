@@ -3,7 +3,7 @@
 A complete DTC read + snapshot + extended data + clear workflow.
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.dtc_reading_flow())

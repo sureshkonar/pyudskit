@@ -73,10 +73,10 @@ Tester                              ECU
 - Respect `P2Server_max` and `P2*Server_max` when waiting for responses.
 - Erase and transfer steps can trigger `0x78` pending responses.
 
-## pyuds Code
+## pyudskit Code
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 

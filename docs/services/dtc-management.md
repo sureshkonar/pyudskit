@@ -32,10 +32,10 @@ None.
 
 Default, Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.clear_dtcs()["uds_bytes"])  # 14 FF FF FF
 ```
@@ -103,10 +103,10 @@ Read DTCs, status, snapshot data, and extended records.
 
 Default, Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.read_dtcs(0x08)["uds_bytes"])  # 19 02 08
 ```

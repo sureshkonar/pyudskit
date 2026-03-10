@@ -40,10 +40,10 @@ Switch the ECU between default, programming, and extended sessions.
 
 All sessions.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.switch_session("extended")["uds_bytes"])  # 10 03
@@ -91,10 +91,10 @@ Request a reset of the ECU.
 
 All sessions.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.ecu_reset("hard")["uds_bytes"])  # 11 01
@@ -148,17 +148,17 @@ Unlocks protected services via seed-key exchange.
 
 Extended, Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.security_access_seed(level=1)["uds_bytes"])  # 27 01
 ```
 
 !!! warning "OEM algorithm"
-    Key calculation is OEM-specific. pyuds does not ship OEM secrets.
+    Key calculation is OEM-specific. pyudskit does not ship OEM secrets.
 
 ---
 
@@ -201,10 +201,10 @@ Enable or disable ECU communication.
 
 Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.communication_control("disable")["uds_bytes"])  # 28 03 01
@@ -254,10 +254,10 @@ ISO 14229-1:2020 authentication services.
 
 Extended, Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.encode("Authenticate with ECU"))
@@ -302,10 +302,10 @@ Keep-alive to avoid session timeout.
 
 All sessions.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.tester_present()["uds_bytes"])  # 3E 80
@@ -355,10 +355,10 @@ Read or set ECU timing parameters.
 
 Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.encode("Read currently active timing parameters"))
@@ -398,10 +398,10 @@ Transmit secured data blocks.
 
 Extended, Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.encode("Send secured data block"))
@@ -447,10 +447,10 @@ Enable or disable DTC setting.
 
 Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.control_dtc_setting("off")["uds_bytes"])  # 85 02
@@ -500,10 +500,10 @@ Configure ECU to respond on specific events.
 
 Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.encode("Configure response on DTC status change"))
@@ -551,10 +551,10 @@ Control link-layer parameters such as baud rate.
 
 Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.encode("Verify baudrate transition to 500k"))

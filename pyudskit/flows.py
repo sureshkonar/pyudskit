@@ -1,4 +1,4 @@
-from pyuds.prompts import FLOW_PROMPT
+from pyudskit.prompts import FLOW_PROMPT
 
 
 FLOW_NAMES = {

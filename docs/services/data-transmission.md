@@ -35,10 +35,10 @@ None.
 
 Default, Extended, Programming (DID-dependent).
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 result = uds.read_did(0xF190)
 print(result["uds_bytes"])  # 22 F1 90
@@ -83,10 +83,10 @@ None.
 
 Extended, Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.read_memory(0x00001000, 0x10)["uds_bytes"])  # 23 44 ...
 ```
@@ -130,10 +130,10 @@ None.
 
 Default, Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.read_scaling_did(0xF186)["uds_bytes"])  # 24 F1 86
 ```
@@ -182,10 +182,10 @@ Request periodic transmission of DIDs.
 
 Default, Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.encode("Send VIN periodically at slow rate"))
 ```
@@ -234,10 +234,10 @@ Create or clear dynamic DIDs.
 
 Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.define_dynamic_did(0xF200, [0xF190])["uds_bytes"])  # 2C 01 F2 00 F1 90
 ```
@@ -281,10 +281,10 @@ None.
 
 Extended, Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.write_did(0xF190, "31 32")["uds_bytes"])  # 2E F1 90 31 32
 ```
@@ -327,10 +327,10 @@ None.
 
 Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.write_memory(0x00001000, "AA BB")["uds_bytes"])  # 3D 40 ...
 ```

@@ -23,8 +23,8 @@ Common examples:
 !!! warning "RCRRP (0x78)"
     The ECU accepted your request but needs more time. Keep waiting and retry the request or wait for the final response.
 
-pyuds provides:
+pyudskit provides:
 
 - `uds.explain_nrc("0x22")`
 - `uds.lookup_nrc(0x78)`
-- Full NRC registry in `pyuds.registry.nrc`
+- Full NRC registry in `pyudskit.registry.nrc`

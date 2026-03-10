@@ -1,8 +1,8 @@
-site_name: pyuds
+site_name: pyudskit
 site_description: Talk to your ECU in plain English — LLM-powered ISO 14229 UDS assistant
-site_url: https://pyuds.readthedocs.io
-repo_url: https://github.com/your-org/pyuds
-repo_name: your-org/pyuds
+site_url: https://pyudskit.readthedocs.io
+repo_url: https://github.com/sureshkonar/pyudskit
+repo_name: your-org/pyudskit
 edit_uri: edit/main/docs/
 
 theme:

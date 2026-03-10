@@ -5,7 +5,7 @@ A runnable five-step walkthrough.
 ## Step 1 — Import and initialize
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 ```
 
@@ -29,7 +29,7 @@ Expected output:
 A plain-English explanation of UDS.
 ```
 
-Explanation: pyuds sends the question to Claude with an ECU context header, and returns a concise explanation.
+Explanation: pyudskit sends the question to Claude with an ECU context header, and returns a concise explanation.
 
 ## Step 3 — Encode a request
 
@@ -43,7 +43,7 @@ Expected output:
 22 F1 90
 ```
 
-Explanation: pyuds translates your intent into a UDS request PDU (service `0x22` and DID `0xF190`).
+Explanation: pyudskit translates your intent into a UDS request PDU (service `0x22` and DID `0xF190`).
 
 ## Step 4 — Decode a response
 
@@ -71,4 +71,4 @@ Expected output:
 P0301: Cylinder 1 misfire detected, with likely causes and steps to read/clear.
 ```
 
-Explanation: pyuds uses DTC conventions (SAE J2012) and UDS service knowledge to explain the code and how to act on it.
+Explanation: pyudskit uses DTC conventions (SAE J2012) and UDS service knowledge to explain the code and how to act on it.

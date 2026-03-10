@@ -21,8 +21,8 @@ It means the ECU accepted the request but needs more time. Wait and retry or lis
 **7. How do I read multiple DIDs in one request?**
 Use `uds.read_dids([0xF190, 0xF186])`.
 
-**8. Can pyuds connect to a real car?**
-Yes, when paired with a transport (CAN or DoIP). pyuds focuses on encoding/decoding and workflows.
+**8. Can pyudskit connect to a real car?**
+Yes, when paired with a transport (CAN or DoIP). pyudskit focuses on encoding/decoding and workflows.
 
 **9. What is the difference between pending and confirmed DTC?**
 Pending is detected once; confirmed is verified across cycles.

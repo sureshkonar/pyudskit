@@ -36,10 +36,10 @@ None.
 
 Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.request_download(0x08000000, 0x10000)["uds_bytes"])  # 34 ...
 ```
@@ -81,10 +81,10 @@ Initiate an upload (read ECU memory) sequence.
 
 Programming, Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.request_upload(0x08000000, 0x1000)["uds_bytes"])  # 35 ...
 ```
@@ -124,10 +124,10 @@ Transfer a single data block.
 
 Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.transfer_data(0x01, "AA BB CC")["uds_bytes"])  # 36 01 AA BB CC
 ```
@@ -165,10 +165,10 @@ Finalize upload/download transfer.
 
 Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.request_transfer_exit()["uds_bytes"])  # 37
 ```
@@ -218,10 +218,10 @@ File-based OTA transfer operations.
 
 Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.request_file_transfer("add", "/file.bin")["uds_bytes"])  # 38 01 2F 66 69 6C 65 2E 62 69 6E
 ```

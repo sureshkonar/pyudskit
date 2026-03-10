@@ -1,7 +1,7 @@
-from pyuds.registry.services import UDS_SERVICES
-from pyuds.registry.nrc import UDS_NRC
-from pyuds.registry.dids import COMMON_DIDS
-from pyuds.registry.dtc_status import DTC_STATUS_BITS, DTC_CATEGORIES
+from pyudskit.registry.services import UDS_SERVICES
+from pyudskit.registry.nrc import UDS_NRC
+from pyudskit.registry.dids import COMMON_DIDS
+from pyudskit.registry.dtc_status import DTC_STATUS_BITS, DTC_CATEGORIES
 
 
 def test_all_services_have_required_keys():

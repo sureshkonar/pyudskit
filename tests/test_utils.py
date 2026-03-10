@@ -1,6 +1,6 @@
 import pytest
 
-from pyuds.utils import (
+from pyudskit.utils import (
     parse_hex,
     extract_json,
     build_alfid,

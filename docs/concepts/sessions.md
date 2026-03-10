@@ -22,10 +22,10 @@ UDS sessions time out if no traffic is received. The standard keep-alive is **S3
 
 <!-- Diagram: Default → Extended → Programming -->
 
-## pyuds example
+## pyudskit example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 uds.switch_session("extended")

@@ -13,6 +13,6 @@ UDS timing parameters control how quickly requests and responses occur.
 
 If you violate timing requirements, ECUs may return NRC `0x21` (busyRepeatRequest) or `0x78` (responsePending).
 
-## pyuds behavior
+## pyudskit behavior
 
-pyuds surfaces these values in the system prompt to improve LLM reasoning and can be used in flow explanations.
+pyudskit surfaces these values in the system prompt to improve LLM reasoning and can be used in flow explanations.

@@ -3,8 +3,8 @@ from __future__ import annotations
 import os
 from typing import Optional
 
-from pyuds.message import UDSMessage
-from pyuds.prompts import (
+from pyudskit.message import UDSMessage
+from pyudskit.prompts import (
     SYSTEM_PROMPT,
     ENCODE_PROMPT,
     DECODE_PROMPT,
@@ -14,13 +14,13 @@ from pyuds.prompts import (
     NRC_PROMPT,
     FLOW_PROMPT,
 )
-from pyuds.registry.dids import COMMON_DIDS
-from pyuds.registry.nrc import UDS_NRC
-from pyuds.registry.routines import COMMON_ROUTINES
-from pyuds.registry.services import UDS_SERVICES
-from pyuds.registry.dtc_status import DTC_STATUS_BITS
-from pyuds.session import UDSSession
-from pyuds.utils import (
+from pyudskit.registry.dids import COMMON_DIDS
+from pyudskit.registry.nrc import UDS_NRC
+from pyudskit.registry.routines import COMMON_ROUTINES
+from pyudskit.registry.services import UDS_SERVICES
+from pyudskit.registry.dtc_status import DTC_STATUS_BITS
+from pyudskit.session import UDSSession
+from pyudskit.utils import (
     bytes_to_hex,
     parse_hex,
     extract_json,
@@ -32,7 +32,7 @@ from pyuds.utils import (
 
 class UDS:
     """
-    pyuds — LLM-powered ISO 14229 UDS assistant.
+    pyudskit — LLM-powered ISO 14229 UDS assistant.
     """
 
     def __init__(
@@ -141,8 +141,8 @@ class UDS:
             "\n".join(
                 [
                     "╔══════════════════════════════════════════════════════════════╗",
-                    "║              pyuds — Quick Reference Guide                   ║",
-                    "║         pip install pyuds  |  from pyuds import UDS          ║",
+                    "║              pyudskit — Quick Reference Guide                   ║",
+                    "║         pip install pyudskit  |  from pyudskit import UDS          ║",
                     "╠══════════════════════════════════════════════════════════════╣",
                     "║  BEGINNER                                                    ║",
                     "║  uds.ask(\"What is SecurityAccess?\")   plain English Q&A      ║",

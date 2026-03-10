@@ -3,10 +3,10 @@
 `UDSSession` tracks ECU context and conversation history.
 
 ```python
-from pyuds.session import UDSSession
+from pyudskit.session import UDSSession
 
 s = UDSSession()
 print(s.context_header())
 ```
 
-::: pyuds.session.UDSSession
+::: pyudskit.session.UDSSession

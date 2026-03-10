@@ -3,7 +3,7 @@
 OTA software update using RequestFileTransfer (0x38).
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.ota_update_flow())

@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pyuds"
+name = "pyudskit"
 version = "0.1.0"
 description = "Talk to your ECU in plain English — LLM-powered ISO 14229 UDS assistant"
 readme = "README.md"
@@ -30,6 +30,6 @@ can  = ["python-can>=4.0"]
 doip = ["doipy>=0.3"]
 
 [project.urls]
-Homepage = "https://github.com/your-org/pyuds"
-Documentation = "https://pyuds.readthedocs.io"
-Issues = "https://github.com/your-org/pyuds/issues"
+Homepage = "https://github.com/sureshkonar/pyudskit"
+Documentation = "https://pyudskit.readthedocs.io"
+Issues = "https://github.com/sureshkonar/pyudskit/issues"

@@ -10,11 +10,11 @@ Examples:
 
 Services are grouped by purpose: session management, data transmission, DTC management, I/O control, routine control, and upload/download.
 
-pyuds provides:
+pyudskit provides:
 
 - Beginner methods like `encode()` and `decode()`
 - Service shortcuts like `read_did()` and `read_dtcs()`
-- Full registries in `pyuds.registry` for validation and lookup
+- Full registries in `pyudskit.registry` for validation and lookup
 
 !!! note "Positive response SID"
     A positive response uses `request SID + 0x40`. For example, `0x22` → `0x62`.

@@ -3,10 +3,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional
 
-from pyuds.registry.nrc import UDS_NRC
-from pyuds.registry.services import UDS_SERVICES
-from pyuds.registry.dtc_status import DTC_STATUS_BITS
-from pyuds.utils import bytes_to_hex, parse_hex
+from pyudskit.registry.nrc import UDS_NRC
+from pyudskit.registry.services import UDS_SERVICES
+from pyudskit.registry.dtc_status import DTC_STATUS_BITS
+from pyudskit.utils import bytes_to_hex, parse_hex
 
 
 @dataclass

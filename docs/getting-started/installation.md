@@ -8,7 +8,7 @@
 ## Install
 
 ```python
-pip install pyuds
+pip install pyudskit
 ```
 
 ## Set Your API Key
@@ -35,23 +35,23 @@ load_dotenv()
 ## Optional Extras
 
 ```python
-pip install pyuds[can]
+pip install pyudskit[can]
 ```
 
 ```python
-pip install pyuds[doip]
+pip install pyudskit[doip]
 ```
 
 ## Verify Installation
 
 ```python
-python -c "from pyuds import UDS; print(UDS().ask('Hello'))"
+python -c "from pyudskit import UDS; print(UDS().ask('Hello'))"
 ```
 
 ## Troubleshooting
 
 !!! warning "Common Issues"
-    - `ModuleNotFoundError: No module named 'pyuds'` — confirm you installed into the active environment.
+    - `ModuleNotFoundError: No module named 'pyudskit'` — confirm you installed into the active environment.
     - `ANTHROPIC_API_KEY not set` — export the environment variable before running.
     - SSL or proxy errors — configure your proxy or verify network access.
 

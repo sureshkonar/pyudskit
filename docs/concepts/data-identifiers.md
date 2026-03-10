@@ -7,7 +7,7 @@ Common DIDs in the 0xF1xx range include VIN, software versions, and serial numbe
 ## Example: Read VIN
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 result = uds.read_did(0xF190)

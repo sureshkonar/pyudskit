@@ -3,7 +3,7 @@
 Read Diagnostic Trouble Codes with a single method call.
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 result = uds.read_dtcs(0x08)

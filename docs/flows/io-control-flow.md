@@ -3,7 +3,7 @@
 A walkthrough of I/O control options.
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.io_control_flow(0x1234))

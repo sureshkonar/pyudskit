@@ -42,10 +42,10 @@ Control actuators or signals identified by a DID.
 
 Extended.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.io_control(0x1234, "shortTermAdjustment", "FF")["uds_bytes"])  # 2F 12 34 03 FF
 ```

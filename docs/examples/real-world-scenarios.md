@@ -3,7 +3,7 @@
 ## Scenario 1 — Workshop DTC Scan
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 
@@ -22,7 +22,7 @@ print(uds.clear_dtcs())
 ## Scenario 2 — ECU Software Update
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 
@@ -41,7 +41,7 @@ uds.ecu_reset("hard")
 ## Scenario 3 — End-of-Line Configuration
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 
@@ -54,7 +54,7 @@ print(uds.lookup_did(0xF190))
 ## Scenario 4 — Actuator Test
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 
@@ -67,7 +67,7 @@ print(uds.io_control(0x1234, "returnControlToECU"))
 ## Scenario 5 — Reading Live Data
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 

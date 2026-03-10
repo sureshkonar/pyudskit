@@ -3,7 +3,7 @@
 This guide sends your first UDS request using plain English.
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.encode("Read the VIN"))

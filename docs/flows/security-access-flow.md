@@ -3,7 +3,7 @@
 A step-by-step seed-key exchange walkthrough.
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 
 uds = UDS()
 print(uds.security_access_flow(level=1))

@@ -1,6 +1,6 @@
 import pytest
 
-from pyuds.client import UDS
+from pyudskit.client import UDS
 
 
 @pytest.fixture

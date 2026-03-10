@@ -41,10 +41,10 @@ Start, stop, or read results from an ECU routine.
 
 Extended, Programming.
 
-### pyuds Example
+### pyudskit Example
 
 ```python
-from pyuds import UDS
+from pyudskit import UDS
 uds = UDS()
 print(uds.routine_control(0xFF00, "start")["uds_bytes"])  # 31 01 FF 00
 ```

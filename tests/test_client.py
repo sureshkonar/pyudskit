@@ -1,4 +1,4 @@
-from pyuds.client import UDS
+from pyudskit.client import UDS
 
 
 def test_encode_returns_uds_bytes_string(uds_client):
