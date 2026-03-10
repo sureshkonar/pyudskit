@@ -15,13 +15,11 @@
 - Overview
 - Install
 - Quick Start
-- Why pyudskit
 - Architecture
-- Service Coverage
-- Beginner Methods
-- Service Shortcuts
-- Diagnostic Flows
-- Real-World Examples
+- Methods at a Glance (UDS + AI)
+- Offline Services (No LLM)
+- AI Client (LLM)
+- Examples
 - API Reference
 - License
 - Links
@@ -68,16 +66,6 @@ print(uds.explain_dtc("P0301"))
 
 ---
 
-## Why pyudskit?
-
-| 🔰 Beginner Friendly | 🔧 Full ISO 14229 | 🤖 LLM Powered |
-|---|---|---|
-| Plain English I/O | All 26+ services | Claude backend |
-| One-liner methods | All 40+ NRCs | Multi-turn context |
-| Built-in help() | 0xF1xx DIDs | Byte-accurate |
-
----
-
 ## Architecture
 
 ```mermaid
@@ -88,10 +76,6 @@ flowchart LR
     D --> E[UDS Response]
     E --> F[Decode + Explain]
 ```
-
----
-
-## Service Coverage (Graph)
 
 ```mermaid
 pie title UDS Services by Group
@@ -105,92 +89,176 @@ pie title UDS Services by Group
 
 ---
 
-## Flow Example (Graph)
+## Methods at a Glance (UDS + AI)
 
-```mermaid
-sequenceDiagram
-    participant Tester
-    participant ECU
-    Tester->>ECU: 10 03 (ExtendedSession)
-    ECU-->>Tester: 50 03 00 19 01 F4
-    Tester->>ECU: 27 01 (RequestSeed)
-    ECU-->>Tester: 67 01 [seed]
-    Tester->>ECU: 27 02 [key]
-    ECU-->>Tester: 67 02
-    Tester->>ECU: 10 02 (ProgrammingSession)
-    Tester->>ECU: 34 ... (RequestDownload)
-    ECU-->>Tester: 74 ...
-    Tester->>ECU: 36 01 [data]
-    ECU-->>Tester: 76 01
-    Tester->>ECU: 37 (RequestTransferExit)
-    ECU-->>Tester: 77
+### UDS Client (Beginner)
+
+- `ask(question)`
+- `encode(description)`
+- `decode(hex_bytes)`
+- `explain_dtc(dtc_code)`
+- `explain_service(service)`
+- `explain_session(session)`
+- `explain_nrc(nrc)`
+- `decode_dtc_status(status_byte)`
+- `lookup_did(did)`
+- `help()`
+
+### UDS Client (Advanced)
+
+- `encode_request(description)`
+- `decode_response(hex_bytes)`
+- `read_did(did)`
+- `read_dids(dids)`
+- `write_did(did, data_hex)`
+- `read_memory(address, length, addr_len=4, size_len=1)`
+- `write_memory(address, data_hex, addr_len=4)`
+- `read_scaling_did(did)`
+- `define_dynamic_did(dynamic_did, source_dids)`
+- `clear_dynamic_did(dynamic_did)`
+- `read_dtcs(status_mask=0x08)`
+- `read_dtc_snapshot(dtc_hex, record_num=0xFF)`
+- `read_dtc_extended(dtc_hex, record_num=0xFF)`
+- `read_supported_dtcs()`
+- `clear_dtcs(group="all")`
+- `ecu_reset(reset_type="hard")`
+- `tester_present(suppress=True)`
+- `communication_control(action="disable")`
+- `control_dtc_setting(setting="off")`
+- `io_control(did, option, value_hex="")`
+- `routine_control(routine_id, action="start", data_hex="")`
+- `request_download(address, size, compression=0, encrypting=0)`
+- `request_upload(address, size)`
+- `transfer_data(block_seq, data_hex)`
+- `request_transfer_exit()`
+- `request_file_transfer(mode, file_path)`
+- `security_access_seed(level=1)`
+- `security_access_key(level=1, key_hex="")`
+- `switch_session(session="extended")`
+- `security_access_flow(level=1)`
+- `programming_flow()`
+- `dtc_reading_flow()`
+- `io_control_flow(did)`
+- `eol_flow()`
+- `ota_update_flow()`
+- `list_services(group=None)`
+- `list_dids()`
+- `list_nrcs()`
+- `list_routines()`
+- `lookup_nrc(nrc_byte)`
+- `lookup_service(sid)`
+- `clear_session()`
+- `ecu_state` (property)
+
+### AI Client (LLM)
+
+- `encode(description)`
+- `decode(hex_bytes)`
+- `explain_service_result(service, result)`
+- `verify_service_result(service, result)`
+- `explain_response(service, response_hex)`
+- `explain_dtc(dtc_code)`
+- `explain_dtc_status(dtc_code, status_byte)`
+- `explain_service(service_name_or_sid)`
+- `explain_nrc(nrc)`
+- `explain_session(session)`
+- `get_flow(flow_name)`
+- `analyze(hex_bytes)`
+- `compare(expected_hex, actual_hex)`
+- `suggest_next_step(last_request, last_response)`
+- `chat(message)`
+- `clear_history()`
+- `reset()`
+
+---
+
+## Offline Services (No LLM)
+
+Each service class supports `build_request`, `parse_response`, and `validate`.
+
+### Session Management
+
+- `DiagnosticSessionControl`
+- `ECUReset`
+- `SecurityAccess`
+- `CommunicationControl`
+- `Authentication`
+- `TesterPresent`
+- `AccessTimingParameter`
+- `SecuredDataTransmission`
+- `ControlDTCSetting`
+- `ResponseOnEvent`
+- `LinkControl`
+
+### Data Transmission
+
+- `ReadDataByIdentifier`
+- `ReadMemoryByAddress`
+- `ReadScalingDataByIdentifier`
+- `ReadDataByPeriodicIdentifier`
+- `DynamicallyDefineDataIdentifier`
+- `WriteDataByIdentifier`
+- `WriteMemoryByAddress`
+
+### DTC Management
+
+- `ClearDiagnosticInformation`
+- `ReadDTCInformation`
+
+### I/O Control
+
+- `InputOutputControlByIdentifier`
+
+### Routine Control
+
+- `RoutineControl`
+
+### Upload / Download
+
+- `RequestDownload`
+- `RequestUpload`
+- `TransferData`
+- `RequestTransferExit`
+- `RequestFileTransfer`
+
+---
+
+## AI Client (LLM)
+
+```python
+from pyudskit.ai import AIClient
+from pyudskit.services import ReadDataByIdentifier
+
+ai = AIClient()
+svc = ReadDataByIdentifier()
+req = svc.build_request([0xF190])
+
+print(ai.explain_service_result(svc, req))
+print(ai.verify_service_result(svc, req))
+print(ai.decode("7F 22 31"))
 ```
 
 ---
 
-## Beginner Methods
+## Examples
 
-| Method | What it does | Example |
-|---|---|---|
-| `ask` | Plain English Q&A | `uds.ask("What is UDS?")` |
-| `encode` | Intent → UDS bytes | `uds.encode("Read the VIN")` |
-| `decode` | Bytes → plain English | `uds.decode("7F 22 31")` |
-| `explain_dtc` | Explain a DTC | `uds.explain_dtc("P0301")` |
-| `explain_service` | Service deep-dive | `uds.explain_service("0x27")` |
-| `help` | Cheat sheet | `uds.help()` |
-
----
-
-## Service Shortcuts
-
-| Method | ISO 14229 Service | Example bytes |
-|---|---|---|
-| `read_did` | 0x22 ReadDataByIdentifier | `22 F1 90` |
-| `write_did` | 0x2E WriteDataByIdentifier | `2E F1 90 ...` |
-| `read_dtcs` | 0x19 ReadDTCInformation | `19 02 08` |
-| `clear_dtcs` | 0x14 ClearDiagnosticInformation | `14 FF FF FF` |
-| `ecu_reset` | 0x11 ECUReset | `11 01` |
-| `tester_present` | 0x3E TesterPresent | `3E 80` |
-| `routine_control` | 0x31 RoutineControl | `31 01 FF 00` |
-| `request_download` | 0x34 RequestDownload | `34 ...` |
-
----
-
-## Diagnostic Flows
-
-| Flow method | Description |
-|---|---|
-| `programming_flow` | Full ECU flash sequence |
-| `security_access_flow` | Seed-key walkthrough |
-| `dtc_reading_flow` | Read + snapshot + clear |
-| `io_control_flow` | I/O control options |
-| `eol_flow` | End-of-line configuration |
-| `ota_update_flow` | OTA update via 0x38 |
-
----
-
-## Real-World Example: Workshop DTC Scan
+### Workshop DTC Scan
 
 ```python
 from pyudskit import UDS
 
 uds = UDS()
 
-# Read confirmed DTCs
 result = uds.read_dtcs(0x08)
 print(result["uds_bytes"])  # 19 02 08
 
-# Explain known DTCs
 for code in ["P0301", "U0100", "B0020"]:
     print(uds.explain_dtc(code))
 
-# Clear all DTCs after repair
 print(uds.clear_dtcs())
 ```
 
----
-
-## Real-World Example: ECU Flash Programming
+### ECU Flash Programming
 
 ```python
 from pyudskit import UDS
@@ -202,7 +270,7 @@ uds.communication_control("disable")
 uds.control_dtc_setting("off")
 uds.security_access_flow(level=1)
 uds.switch_session("programming")
-uds.routine_control(0xFF00, "start")  # erase
+uds.routine_control(0xFF00, "start")
 uds.request_download(0x08000000, 0x10000)
 uds.transfer_data(0x01, "AA BB CC ...")
 uds.request_transfer_exit()
