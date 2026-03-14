@@ -29,6 +29,9 @@ dev  = ["pytest>=8.0", "pytest-mock", "black", "ruff", "mypy"]
 can  = ["python-can>=4.0"]
 doip = ["doipy>=0.3"]
 
+[project.scripts]
+pyudskit = "pyudskit.cli:main"
+
 [project.urls]
 Homepage = "https://github.com/sureshkonar/pyudskit"
 Documentation = "https://pyudskit.readthedocs.io"
