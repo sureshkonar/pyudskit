@@ -15,6 +15,17 @@ pyudskit provides:
 - Beginner methods like `encode()` and `decode()`
 - Service shortcuts like `read_did()` and `read_dtcs()`
 - Full registries in `pyudskit.registry` for validation and lookup
+- Offline service classes in `pyudskit.services`
+- AI reasoning in `pyudskit.ai`
+
+See also:
+
+- API Reference → Services
+- API Reference → AI Client
+- API Reference → Transport
+- API Reference → Async
+- API Reference → CLI
+- API Reference → OEM Profiles
 
 !!! note "Positive response SID"
     A positive response uses `request SID + 0x40`. For example, `0x22` → `0x62`.

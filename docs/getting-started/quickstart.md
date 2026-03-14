@@ -72,3 +72,14 @@ P0301: Cylinder 1 misfire detected, with likely causes and steps to read/clear.
 ```
 
 Explanation: pyudskit uses DTC conventions (SAE J2012) and UDS service knowledge to explain the code and how to act on it.
+
+---
+
+## Related References
+
+- API Reference → AI Client
+- API Reference → Services
+- API Reference → Transport
+- API Reference → Async
+- API Reference → CLI
+- API Reference → OEM Profiles

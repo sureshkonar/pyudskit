@@ -80,6 +80,7 @@ nav:
     - Transport: api-reference/transport.md
     - Async: api-reference/async.md
     - CLI: api-reference/cli.md
+    - OEM Profiles: api-reference/profiles.md
     - UDSMessage: api-reference/uds-message.md
     - UDSSession: api-reference/uds-session.md
     - Utils: api-reference/utils.md

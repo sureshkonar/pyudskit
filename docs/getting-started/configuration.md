@@ -34,5 +34,14 @@ If you need a fresh context:
 uds.clear_session()
 ```
 
+## Related References
+
+- API Reference → AI Client
+- API Reference → Services
+- API Reference → Transport
+- API Reference → Async
+- API Reference → CLI
+- API Reference → OEM Profiles
+
 !!! tip "Testing"
     Use the test fixtures in `tests/conftest.py` to mock LLM responses.
