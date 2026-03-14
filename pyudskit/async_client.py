@@ -37,6 +37,12 @@ class AsyncUDS:
     async def explain_nrc(self, nrc: str) -> str:
         return self._uds.explain_nrc(nrc)
 
+    async def decode_dtc_status(self, status_byte: int) -> dict[str, bool]:
+        return self._uds.decode_dtc_status(status_byte)
+
+    async def parse_dtc_response(self, hex_bytes: str) -> dict:
+        return self._uds.parse_dtc_response(hex_bytes)
+
     async def encode_request(self, description: str) -> dict:
         return self._uds.encode_request(description)
 
@@ -121,6 +127,15 @@ class AsyncUDS:
     async def security_access_key(self, level: int = 1, key_hex: str = "") -> dict:
         return self._uds.security_access_key(level, key_hex)
 
+    async def security_access_key_from_seed(self, level: int, seed_hex: str, algorithm: str = "default") -> dict:
+        return self._uds.security_access_key_from_seed(level, seed_hex, algorithm)
+
+    async def register_security_algorithm(self, name: str, func) -> None:
+        self._uds.register_security_algorithm(name, func)
+
+    async def list_security_algorithms(self) -> list[str]:
+        return self._uds.list_security_algorithms()
+
     async def switch_session(self, session: str = "extended") -> dict:
         return self._uds.switch_session(session)
 
@@ -162,6 +177,16 @@ class AsyncUDS:
 
     async def clear_session(self) -> None:
         self._uds.clear_session()
+
+    async def export(self, data: dict, fmt: str = "json") -> str:
+        return self._uds.export(data, fmt)
+
+    async def load_profile(self, profile) -> None:
+        self._uds.load_profile(profile)
+
+    @property
+    def profile(self):
+        return self._uds.profile
 
     @property
     def ecu_state(self) -> dict:

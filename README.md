@@ -108,6 +108,16 @@ pie title UDS Services by Group
 
 ---
 
+## Advanced Features
+
+- OEM profile overrides for services, DIDs, routines, and DTCs
+- SecurityAccess key algorithm registry + seed→key helper
+- Transport session client with 0x78 (RCRRP) handling
+- Mock transport for offline testing
+- JSON/YAML export helpers
+
+---
+
 ## Methods at a Glance (UDS + AI)
 
 ### UDS Client (Beginner)
@@ -120,6 +130,7 @@ pie title UDS Services by Group
 - `explain_session(session)`
 - `explain_nrc(nrc)`
 - `decode_dtc_status(status_byte)`
+- `parse_dtc_response(hex_bytes)`
 - `lookup_did(did)`
 - `help()`
 
@@ -153,6 +164,9 @@ pie title UDS Services by Group
 - `request_file_transfer(mode, file_path)`
 - `security_access_seed(level=1)`
 - `security_access_key(level=1, key_hex="")`
+- `security_access_key_from_seed(level, seed_hex, algorithm="default")`
+- `register_security_algorithm(name, func)`
+- `list_security_algorithms()`
 - `switch_session(session="extended")`
 - `security_access_flow(level=1)`
 - `programming_flow()`
@@ -166,8 +180,11 @@ pie title UDS Services by Group
 - `list_routines()`
 - `lookup_nrc(nrc_byte)`
 - `lookup_service(sid)`
+- `export(data, fmt="json")`
 - `clear_session()`
 - `ecu_state` (property)
+- `load_profile(profile)`
+- `profile` (property)
 
 ### AI Client (LLM)
 

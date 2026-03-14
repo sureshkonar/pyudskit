@@ -32,6 +32,12 @@ def test_decode_dtc_status_confirmed_only(uds_client):
     assert flags["pendingDTC"] is False
 
 
+def test_parse_dtc_response():
+    uds = UDS()
+    fields = uds.parse_dtc_response("59 02 00 01 02 08")
+    assert "dtcs" in fields
+
+
 def test_read_did_vin_bytes(uds_client):
     out = uds_client.read_did(0xF190)
     assert "22 F1 90" in out["uds_bytes"]

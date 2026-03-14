@@ -118,3 +118,17 @@ def positive_response_sid(request_sid: int) -> int:
     if not isinstance(request_sid, int):
         raise ValueError("request_sid must be int")
     return request_sid + 0x40
+
+
+def to_json(data: Any, indent: int = 2) -> str:
+    """Serialize to JSON with stable formatting."""
+    return json.dumps(data, indent=indent, ensure_ascii=False, default=str)
+
+
+def to_yaml(data: Any) -> str:
+    """Serialize to YAML (requires PyYAML)."""
+    try:
+        import yaml  # type: ignore
+    except Exception as exc:  # pragma: no cover
+        raise RuntimeError("PyYAML is required for YAML export") from exc
+    return yaml.safe_dump(data, sort_keys=False)

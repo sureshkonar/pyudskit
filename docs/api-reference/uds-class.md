@@ -4,18 +4,18 @@
 
 | Category | Methods |
 |---|---|
-| Beginner | `ask`, `encode`, `decode`, `explain_dtc`, `explain_service`, `explain_session`, `explain_nrc`, `decode_dtc_status`, `lookup_did`, `help` |
+| Beginner | `ask`, `encode`, `decode`, `explain_dtc`, `explain_service`, `explain_session`, `explain_nrc`, `decode_dtc_status`, `parse_dtc_response`, `lookup_did`, `help` |
 | Encoding | `encode_request`, `decode_response` |
 | Data | `read_did`, `read_dids`, `write_did`, `read_memory`, `write_memory`, `read_scaling_did`, `define_dynamic_did`, `clear_dynamic_did` |
 | DTC | `read_dtcs`, `read_dtc_snapshot`, `read_dtc_extended`, `read_supported_dtcs`, `clear_dtcs` |
 | Session | `switch_session`, `ecu_reset`, `tester_present`, `communication_control`, `control_dtc_setting` |
-| Security | `security_access_seed`, `security_access_key` |
+| Security | `security_access_seed`, `security_access_key`, `security_access_key_from_seed`, `register_security_algorithm`, `list_security_algorithms` |
 | I/O | `io_control` |
 | Routine | `routine_control` |
 | Flash | `request_download`, `request_upload`, `transfer_data`, `request_transfer_exit`, `request_file_transfer` |
 | Flows | `programming_flow`, `security_access_flow`, `dtc_reading_flow`, `io_control_flow`, `eol_flow`, `ota_update_flow` |
 | Profiles | `load_profile`, `profile` |
-| Utils | `list_services`, `list_dids`, `list_nrcs`, `list_routines`, `lookup_nrc`, `lookup_service`, `clear_session`, `ecu_state` |
+| Utils | `list_services`, `list_dids`, `list_nrcs`, `list_routines`, `lookup_nrc`, `lookup_service`, `export`, `clear_session`, `ecu_state` |
 
 ## Examples Per Method
 
@@ -81,6 +81,14 @@ print(uds.explain_nrc("0x22"))
 from pyudskit import UDS
 uds = UDS()
 print(uds.decode_dtc_status(0x2C))
+```
+
+### parse_dtc_response
+
+```python
+from pyudskit import UDS
+uds = UDS()
+print(uds.parse_dtc_response("59 02 00 01 02 08"))
 ```
 
 ### lookup_did
@@ -323,6 +331,33 @@ uds = UDS()
 print(uds.security_access_key(level=1, key_hex="12 34 56 78"))
 ```
 
+### security_access_key_from_seed
+
+```python
+from pyudskit import UDS
+uds = UDS()
+def algo(seed: bytes, level: int) -> bytes:
+    return bytes(b ^ 0xAA for b in seed)
+uds.register_security_algorithm("xor", algo)
+print(uds.security_access_key_from_seed(1, "A1 B2 C3 D4", "xor"))
+```
+
+### register_security_algorithm
+
+```python
+from pyudskit import UDS
+uds = UDS()
+uds.register_security_algorithm("xor", lambda seed, level: bytes(b ^ 0xAA for b in seed))
+```
+
+### list_security_algorithms
+
+```python
+from pyudskit import UDS
+uds = UDS()
+print(uds.list_security_algorithms())
+```
+
 ### switch_session
 
 ```python
@@ -433,6 +468,15 @@ print(uds.lookup_service(0x22))
 from pyudskit import UDS
 uds = UDS()
 uds.clear_session()
+```
+
+### export
+
+```python
+from pyudskit import UDS
+uds = UDS()
+result = uds.read_did(0xF190)
+print(uds.export(result, "json"))
 ```
 
 ### ecu_state

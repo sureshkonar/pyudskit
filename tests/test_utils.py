@@ -8,6 +8,7 @@ from pyudskit.utils import (
     dtc_status_summary,
     suppress_pos_rsp,
     positive_response_sid,
+    to_json,
 )
 
 
@@ -61,3 +62,7 @@ def test_suppress_pos_rsp_sets_bit7():
 
 def test_positive_response_sid():
     assert positive_response_sid(0x22) == 0x62
+
+
+def test_to_json():
+    assert "\"ok\"" in to_json({"ok": True})

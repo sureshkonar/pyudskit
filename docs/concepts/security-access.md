@@ -46,3 +46,16 @@ from pyudskit import UDS
 uds = UDS()
 print(uds.security_access_flow(level=1))
 ```
+
+## Custom Key Algorithm
+
+```python
+from pyudskit import UDS
+
+def xor_algo(seed: bytes, level: int) -> bytes:
+    return bytes(b ^ 0xAA for b in seed)
+
+uds = UDS()
+uds.register_security_algorithm("xor", xor_algo)
+print(uds.security_access_key_from_seed(1, "A3 F2 C1 09", "xor"))
+```

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyudskit"
-version = "0.2.0"
+version = "0.3.0"
 description = "Talk to your ECU in plain English — LLM-powered ISO 14229 UDS assistant"
 readme = "README.md"
 license = { text = "MIT" }
@@ -28,6 +28,7 @@ dependencies = [
 dev  = ["pytest>=8.0", "pytest-mock", "black", "ruff", "mypy"]
 can  = ["python-can>=4.0"]
 doip = ["doipy>=0.3"]
+yaml = ["pyyaml>=6.0"]
 
 [project.scripts]
 pyudskit = "pyudskit.cli:main"

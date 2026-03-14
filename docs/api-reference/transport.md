@@ -8,6 +8,8 @@ Transport adapters enable real ECU I/O over CAN and DoIP.
 - `CANTransport` (python-can)
 - `DoIPTransport` (doipy)
 - `IsoTpSegmenter` / `IsoTpReassembler`
+- `UDSTransportClient` (request/response session)
+- `MockTransport` (tests/sim)
 
 ## Example
 
@@ -21,6 +23,14 @@ print(resp)
 tr.close()
 ```
 
+```python
+from pyudskit.transport import UDSTransportClient, MockTransport
+
+mock = MockTransport(responses=[bytes.fromhex("50 03 00 19 01 F4")])
+client = UDSTransportClient(mock)
+print(client.request(bytes.fromhex("10 03")))
+```
+
 ## API Docs
 
 ::: pyudskit.transport
@@ -29,3 +39,6 @@ tr.close()
 ::: pyudskit.transport.doip.DoIPTransport
 ::: pyudskit.transport.isotp.IsoTpSegmenter
 ::: pyudskit.transport.isotp.IsoTpReassembler
+::: pyudskit.transport.session.UDSTransportClient
+::: pyudskit.transport.session.UDSTiming
+::: pyudskit.transport.mock.MockTransport

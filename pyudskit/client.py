@@ -28,7 +28,11 @@ from pyudskit.utils import (
     build_alfid,
     suppress_pos_rsp,
     positive_response_sid,
+    to_json,
+    to_yaml,
 )
+from pyudskit.services.dtc_management.read_dtc_information import ReadDTCInformation
+from pyudskit.security import register_security_algorithm, compute_key, list_security_algorithms
 
 
 class UDS:
@@ -145,6 +149,16 @@ class UDS:
 
     def decode_dtc_status(self, status_byte: int) -> dict[str, bool]:
         return {name: bool(status_byte & bit) for bit, name in DTC_STATUS_BITS.items()}
+
+    def parse_dtc_response(self, hex_bytes: str) -> dict:
+        """
+        Parse a 0x59 ReadDTCInformation response into structured fields.
+        """
+        svc = ReadDTCInformation()
+        result = svc.parse_response(hex_bytes)
+        if not result.success:
+            raise ValueError("; ".join(result.errors) if result.errors else "failed to parse DTC response")
+        return result.fields
 
     def lookup_did(self, did: int) -> str:
         info = None
@@ -396,6 +410,17 @@ class UDS:
         payload = bytes([0x27, sub]) + key_bytes
         return self._build_request(payload, "SecurityAccess", "Send security key")
 
+    def security_access_key_from_seed(self, level: int, seed_hex: str, algorithm: str = "default") -> dict:
+        seed = parse_hex(seed_hex)
+        key = compute_key(algorithm, seed, level)
+        return self.security_access_key(level=level, key_hex=bytes_to_hex(key))
+
+    def register_security_algorithm(self, name: str, func) -> None:
+        register_security_algorithm(name, func)
+
+    def list_security_algorithms(self) -> list[str]:
+        return list_security_algorithms()
+
     def switch_session(self, session: str = "extended") -> dict:
         session_map = {"default": 0x01, "programming": 0x02, "extended": 0x03}
         sub = session_map.get(session, 0x03)
@@ -462,6 +487,14 @@ class UDS:
 
     def clear_session(self) -> None:
         self.session.reset()
+
+    def export(self, data: dict, fmt: str = "json") -> str:
+        """Serialize a result dict as JSON or YAML."""
+        if fmt == "json":
+            return to_json(data)
+        if fmt == "yaml":
+            return to_yaml(data)
+        raise ValueError("fmt must be 'json' or 'yaml'")
 
     def load_profile(self, profile: Union[str, dict, OEMProfile]) -> None:
         """
