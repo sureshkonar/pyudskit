@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyudskit"
-version = "0.1.0"
+version = "0.2.0"
 description = "Talk to your ECU in plain English — LLM-powered ISO 14229 UDS assistant"
 readme = "README.md"
 license = { text = "MIT" }

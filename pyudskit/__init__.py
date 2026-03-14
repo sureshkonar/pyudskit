@@ -15,5 +15,5 @@ from pyudskit.session import UDSSession
 from pyudskit.ai.client import AIClient
 from pyudskit import services
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __all__ = ["UDS", "UDSMessage", "UDSSession", "AIClient", "services"]
