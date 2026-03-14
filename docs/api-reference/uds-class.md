@@ -4,16 +4,18 @@
 
 | Category | Methods |
 |---|---|
-| Beginner | `ask`, `encode`, `decode`, `explain_dtc`, `explain_service`, `help` |
+| Beginner | `ask`, `encode`, `decode`, `explain_dtc`, `explain_service`, `explain_session`, `explain_nrc`, `decode_dtc_status`, `lookup_did`, `help` |
 | Encoding | `encode_request`, `decode_response` |
-| Data | `read_did`, `write_did`, `read_memory`, `write_memory` |
-| DTC | `read_dtcs`, `clear_dtcs`, `read_dtc_snapshot`, `read_dtc_extended` |
-| Session | `switch_session`, `ecu_reset`, `tester_present` |
+| Data | `read_did`, `read_dids`, `write_did`, `read_memory`, `write_memory`, `read_scaling_did`, `define_dynamic_did`, `clear_dynamic_did` |
+| DTC | `read_dtcs`, `read_dtc_snapshot`, `read_dtc_extended`, `read_supported_dtcs`, `clear_dtcs` |
+| Session | `switch_session`, `ecu_reset`, `tester_present`, `communication_control`, `control_dtc_setting` |
 | Security | `security_access_seed`, `security_access_key` |
+| I/O | `io_control` |
 | Routine | `routine_control` |
-| Flash | `request_download`, `transfer_data`, `request_transfer_exit` |
-| Flows | `programming_flow`, `security_access_flow`, `dtc_reading_flow` |
-| Utils | `list_services`, `lookup_nrc`, `clear_session`, `ecu_state` |
+| Flash | `request_download`, `request_upload`, `transfer_data`, `request_transfer_exit`, `request_file_transfer` |
+| Flows | `programming_flow`, `security_access_flow`, `dtc_reading_flow`, `io_control_flow`, `eol_flow`, `ota_update_flow` |
+| Profiles | `load_profile`, `profile` |
+| Utils | `list_services`, `list_dids`, `list_nrcs`, `list_routines`, `lookup_nrc`, `lookup_service`, `clear_session`, `ecu_state` |
 
 ## Examples Per Method
 
@@ -439,6 +441,22 @@ uds.clear_session()
 from pyudskit import UDS
 uds = UDS()
 print(uds.ecu_state)
+```
+
+### load_profile
+
+```python
+from pyudskit import UDS
+uds = UDS()
+uds.load_profile("pyudskit/profiles/oem_example.json")
+```
+
+### profile
+
+```python
+from pyudskit import UDS
+uds = UDS(profile="pyudskit/profiles/oem_example.json")
+print(uds.profile.name)
 ```
 
 ## API Docs
