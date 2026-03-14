@@ -13,6 +13,7 @@ class OEMProfile:
     dids: dict[int, dict]
     routines: dict[int, dict]
     services: dict[int, dict]
+    dtcs: dict[str, dict]
 
 
 def load_profile(path: str) -> OEMProfile:
@@ -26,4 +27,5 @@ def load_profile(path: str) -> OEMProfile:
         dids={int(k, 0): v for k, v in data.get("dids", {}).items()},
         routines={int(k, 0): v for k, v in data.get("routines", {}).items()},
         services={int(k, 0): v for k, v in data.get("services", {}).items()},
+        dtcs={str(k): v for k, v in data.get("dtcs", {}).items()},
     )

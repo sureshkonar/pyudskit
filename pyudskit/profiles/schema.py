@@ -16,7 +16,7 @@ def validate_profile(data: dict) -> ProfileValidationResult:
         return ProfileValidationResult(False, ["profile must be a dict"])
     if "name" in data and not isinstance(data["name"], str):
         errors.append("name must be a string")
-    for key in ("dids", "routines", "services"):
+    for key in ("dids", "routines", "services", "dtcs"):
         if key in data and not isinstance(data[key], dict):
             errors.append(f"{key} must be a dict")
     # validate DID entries
@@ -46,4 +46,11 @@ def validate_profile(data: dict) -> ProfileValidationResult:
             errors.append(f"invalid service key: {k}")
         if not isinstance(v, dict):
             errors.append(f"Service {k} must map to object")
+    # validate DTC catalog
+    dtcs = data.get("dtcs", {})
+    for k, v in dtcs.items():
+        if not isinstance(k, str):
+            errors.append("DTC keys must be strings like 'P0301'")
+        if not isinstance(v, dict):
+            errors.append(f"DTC {k} must map to object")
     return ProfileValidationResult(len(errors) == 0, errors)

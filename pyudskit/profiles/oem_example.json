@@ -9,5 +9,8 @@
   },
   "services": {
     "0x10": {"name": "DiagnosticSessionControl"}
+  },
+  "dtcs": {
+    "P0301": {"name": "Cylinder 1 Misfire", "description": "Detected misfire on cylinder 1", "severity": "medium"}
   }
 }

@@ -64,6 +64,25 @@ print(uds.decode("62 F1 90 57 30 4C 41 53 54 31 32 33 34 35 36 37 38"))
 print(uds.explain_dtc("P0301"))
 ```
 
+## OEM Profiles (Straightforward)
+
+Load an OEM profile to make services, DIDs, routines, and DTCs match your ECU:
+
+```python
+from pyudskit import UDS
+
+uds = UDS(profile="pyudskit/profiles/oem_example.json")
+print(uds.list_dids())
+print(uds.explain_dtc("P0301"))
+```
+
+You can also load a dict at runtime:
+
+```python
+profile = {"name": "my_ecu", "dtcs": {"P0301": {"name": "Cylinder 1 Misfire"}}}
+uds.load_profile(profile)
+```
+
 ---
 
 ## Architecture

@@ -34,6 +34,32 @@ If you need a fresh context:
 uds.clear_session()
 ```
 
+## OEM Profile (Straightforward)
+
+Load an OEM profile so services, DIDs, routines, and DTCs match your ECU:
+
+```python
+from pyudskit import UDS
+
+uds = UDS(profile="pyudskit/profiles/oem_example.json")
+
+print(uds.list_services())   # merged with OEM services
+print(uds.list_dids())       # merged with OEM DIDs
+print(uds.explain_dtc("P0301"))  # OEM DTC if present
+```
+
+You can also load a dict at runtime:
+
+```python
+profile = {
+    "name": "my_ecu",
+    "dids": {"0xF190": {"name": "VIN", "length_bytes": 17}},
+    "services": {"0x27": {"name": "SecurityAccess"}},
+    "dtcs": {"P0301": {"name": "Cylinder 1 Misfire", "severity": "medium"}},
+}
+uds.load_profile(profile)
+```
+
 ## Related References
 
 - API Reference → AI Client

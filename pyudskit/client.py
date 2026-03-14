@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import os
-from typing import Optional
+from typing import Optional, Union
 
 from pyudskit.message import UDSMessage
 from pyudskit.prompts import (
@@ -20,6 +20,7 @@ from pyudskit.registry.routines import COMMON_ROUTINES
 from pyudskit.registry.services import UDS_SERVICES
 from pyudskit.registry.dtc_status import DTC_STATUS_BITS
 from pyudskit.session import UDSSession
+from pyudskit.profiles import OEMProfile, load_profile, validate_profile
 from pyudskit.utils import (
     bytes_to_hex,
     parse_hex,
@@ -40,12 +41,16 @@ class UDS:
         api_key: Optional[str] = None,
         model: str = "claude-sonnet-4-20250514",
         verbose: bool = False,
+        profile: Optional[Union[str, dict, OEMProfile]] = None,
     ) -> None:
         self.api_key = api_key or os.getenv("ANTHROPIC_API_KEY")
         self.model = model
         self.verbose = verbose
         self.session = UDSSession()
         self._client = None
+        self._profile: Optional[OEMProfile] = None
+        if profile is not None:
+            self.load_profile(profile)
 
     def _ensure_client(self) -> None:
         if self._client is not None:
@@ -116,6 +121,17 @@ class UDS:
             return reply
 
     def explain_dtc(self, dtc_code: str) -> str:
+        if self._profile and dtc_code in self._profile.dtcs:
+            info = self._profile.dtcs[dtc_code]
+            name = info.get("name", "OEM DTC")
+            desc = info.get("description", "")
+            severity = info.get("severity", "")
+            parts = [f"{dtc_code} {name}"]
+            if desc:
+                parts.append(desc)
+            if severity:
+                parts.append(f"severity: {severity}")
+            return " — ".join(parts)
         return self._call_llm(DTC_PROMPT.format(code=dtc_code))
 
     def explain_service(self, service: str) -> str:
@@ -131,10 +147,16 @@ class UDS:
         return {name: bool(status_byte & bit) for bit, name in DTC_STATUS_BITS.items()}
 
     def lookup_did(self, did: int) -> str:
-        info = COMMON_DIDS.get(did)
+        info = None
+        if self._profile and did in self._profile.dids:
+            info = self._profile.dids[did]
+        if not info:
+            info = COMMON_DIDS.get(did)
         if not info:
             return "Unknown DID"
-        return f"0x{did:04X} {info['name']}: {info['description']}"
+        name = info.get("name", "Unknown")
+        desc = info.get("description", "")
+        return f"0x{did:04X} {name}: {desc}" if desc else f"0x{did:04X} {name}"
 
     def help(self) -> None:
         print(
@@ -404,27 +426,71 @@ class UDS:
 
     # UTILITIES
     def list_services(self, group: Optional[str] = None) -> dict[int, str]:
+        services = {sid: info["name"] for sid, info in UDS_SERVICES.items()}
+        if self._profile:
+            for sid, info in self._profile.services.items():
+                services[sid] = info.get("name", services.get(sid, "CustomService"))
         if group is None:
-            return {sid: info["name"] for sid, info in UDS_SERVICES.items()}
-        return {sid: info["name"] for sid, info in UDS_SERVICES.items() if info.get("group") == group}
+            return services
+        return {sid: name for sid, name in services.items() if UDS_SERVICES.get(sid, {}).get("group") == group}
 
     def list_dids(self) -> dict[int, str]:
-        return {did: info["name"] for did, info in COMMON_DIDS.items()}
+        dids = {did: info["name"] for did, info in COMMON_DIDS.items()}
+        if self._profile:
+            for did, info in self._profile.dids.items():
+                dids[did] = info.get("name", dids.get(did, "CustomDID"))
+        return dids
 
     def list_nrcs(self) -> dict[int, str]:
         return dict(UDS_NRC)
 
     def list_routines(self) -> dict[int, str]:
-        return {rid: info["name"] for rid, info in COMMON_ROUTINES.items()}
+        routines = {rid: info["name"] for rid, info in COMMON_ROUTINES.items()}
+        if self._profile:
+            for rid, info in self._profile.routines.items():
+                routines[rid] = info.get("name", routines.get(rid, "CustomRoutine"))
+        return routines
 
     def lookup_nrc(self, nrc_byte: int) -> str:
         return UDS_NRC.get(nrc_byte, "Unknown NRC")
 
     def lookup_service(self, sid: int) -> dict:
-        return UDS_SERVICES.get(sid, {})
+        info = dict(UDS_SERVICES.get(sid, {}))
+        if self._profile and sid in self._profile.services:
+            info.update(self._profile.services[sid])
+        return info
 
     def clear_session(self) -> None:
         self.session.reset()
+
+    def load_profile(self, profile: Union[str, dict, OEMProfile]) -> None:
+        """
+        Load an OEM profile from path, dict, or OEMProfile instance.
+        This overrides default services/DIDs/routines/DTCs for lookups.
+        """
+        if isinstance(profile, OEMProfile):
+            self._profile = profile
+            return
+        if isinstance(profile, str):
+            self._profile = load_profile(profile)
+            return
+        if isinstance(profile, dict):
+            validation = validate_profile(profile)
+            if not validation.ok:
+                raise ValueError("Invalid profile: " + "; ".join(validation.errors))
+            self._profile = OEMProfile(
+                name=profile.get("name", "custom"),
+                dids={int(k, 0): v for k, v in profile.get("dids", {}).items()},
+                routines={int(k, 0): v for k, v in profile.get("routines", {}).items()},
+                services={int(k, 0): v for k, v in profile.get("services", {}).items()},
+                dtcs={str(k): v for k, v in profile.get("dtcs", {}).items()},
+            )
+            return
+        raise TypeError("profile must be a path, dict, or OEMProfile")
+
+    @property
+    def profile(self) -> Optional[OEMProfile]:
+        return self._profile
 
     @property
     def ecu_state(self) -> dict:
