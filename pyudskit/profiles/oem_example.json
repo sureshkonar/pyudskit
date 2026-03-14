@@ -1,0 +1,13 @@
+{
+  "name": "example_oem",
+  "dids": {
+    "0xF190": {"name": "VIN", "length_bytes": 17},
+    "0xF1A0": {"name": "CustomData", "length_bytes": 4}
+  },
+  "routines": {
+    "0xFF00": {"name": "EraseFlashMemory"}
+  },
+  "services": {
+    "0x10": {"name": "DiagnosticSessionControl"}
+  }
+}
